@@ -25,17 +25,16 @@ fn part_two_validator(policy: &str, password: &str) -> bool {
         .map(|p| (p.parse::<usize>().unwrap() - 1))
         .collect_tuple()
         .unwrap();
-    let characters = password.chars();
 
-    (&characters.clone().nth(index1).unwrap() == &character)
-        ^ (&characters.clone().nth(index2).unwrap() == &character)
+    (password.chars().nth(index1).unwrap() == character)
+        ^ (password.chars().nth(index2).unwrap() == character)
 }
 
 fn sum_valid_passwords(
     password_validator: &dyn Fn(&str, &str) -> bool,
-    passwords_and_policies: &Vec<(&str, &str)>,
+    policies_and_passwords: &Vec<(&str, &str)>,
 ) -> usize {
-    let valid_passwords: Vec<(&str, &str)> = passwords_and_policies
+    let valid_passwords: Vec<(&str, &str)> = policies_and_passwords
         .into_iter()
         .filter(|p| password_validator(p.0, p.1))
         .cloned()
@@ -50,17 +49,17 @@ fn main() {
         .join("input.txt");
     let input = fs::read_to_string(input_filepath).unwrap();
 
-    let mut passwords_and_policies: Vec<(&str, &str)> = Vec::new();
+    let mut policies_and_passwords: Vec<(&str, &str)> = Vec::new();
     for line in input.lines() {
-        passwords_and_policies.push(line.split(": ").collect_tuple().unwrap());
+        policies_and_passwords.push(line.split(": ").collect_tuple().unwrap());
     }
 
     println!(
         "Part One: {}",
-        sum_valid_passwords(&part_one_validator, &passwords_and_policies)
+        sum_valid_passwords(&part_one_validator, &policies_and_passwords)
     );
     println!(
         "Part Two: {}",
-        sum_valid_passwords(&part_two_validator, &passwords_and_policies)
+        sum_valid_passwords(&part_two_validator, &policies_and_passwords)
     );
 }

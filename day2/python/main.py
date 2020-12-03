@@ -14,16 +14,16 @@ def part_two_validator(policy: str, password: str) -> bool:
 
 
 def sum_valid_passwords(
-    password_validator, passwords_and_policies: list[list[str, str]]
+    password_validator, policies_and_passwords: list[list[str, str]]
 ):
     return sum(
         password_validator(policy, password)
-        for policy, password in passwords_and_policies
+        for policy, password in policies_and_passwords
     )
 
 
 with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
-    passwords_and_policies = [line.split(': ') for line in f.read().splitlines()]
+    policies_and_passwords = [line.split(': ') for line in f.read().splitlines()]
 
-print('Part One: ', sum_valid_passwords(part_one_validator, passwords_and_policies))
-print('Part Two: ', sum_valid_passwords(part_two_validator, passwords_and_policies))
+print('Part One: ', sum_valid_passwords(part_one_validator, policies_and_passwords))
+print('Part Two: ', sum_valid_passwords(part_two_validator, policies_and_passwords))
