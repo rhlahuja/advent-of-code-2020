@@ -1,10 +1,6 @@
 import pathlib
 
 
-with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
-    tree_map = f.read().splitlines()
-
-
 def num_trees_encountered(tree_map: list[str], slope: tuple[int, int]) -> int:
     num_cols = len(tree_map[0])
     num_rows = len(tree_map)
@@ -26,6 +22,9 @@ def num_trees_encountered(tree_map: list[str], slope: tuple[int, int]) -> int:
 
     return trees_encountered
 
+
+with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
+    tree_map = f.read().splitlines()
 
 print('Part One: ', num_trees_encountered(tree_map, (3, 1)))
 print(
