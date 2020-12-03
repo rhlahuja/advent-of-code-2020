@@ -28,7 +28,7 @@ fn part_two_naive(numbers: &[i32]) -> i32 {
 
 fn itertools_combination_product(numbers: &[i32], num_elements: usize) -> i32 {
     for expenses in numbers.iter().combinations(num_elements) {
-        if expenses.clone().into_iter().sum::<i32>() == 2020i32 {
+        if expenses.clone().into_iter().sum::<i32>() == 2020 {
             return expenses.into_iter().product::<i32>();
         }
     }
