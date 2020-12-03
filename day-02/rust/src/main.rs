@@ -7,7 +7,7 @@ use itertools::Itertools;
 fn part_one_validator(policy: &str, password: &str) -> bool {
     let (counts, character) = policy.split_whitespace().collect_tuple().unwrap();
     let (min_count, max_count) = counts
-        .splitn(2, "-")
+        .splitn(2, '-')
         .map(|c| c.parse::<usize>().ok())
         .collect_tuple()
         .unwrap();
@@ -20,7 +20,7 @@ fn part_two_validator(policy: &str, password: &str) -> bool {
     let (positions, character) = policy.split_whitespace().collect_tuple().unwrap();
     let character = character.chars().next().unwrap();
     let (index1, index2) = positions
-        .splitn(2, "-")
+        .splitn(2, '-')
         .map(|p| (p.parse::<usize>().unwrap() - 1))
         .collect_tuple()
         .unwrap();
@@ -31,10 +31,10 @@ fn part_two_validator(policy: &str, password: &str) -> bool {
 
 fn sum_valid_passwords(
     password_validator: &dyn Fn(&str, &str) -> bool,
-    policies_and_passwords: &Vec<(&str, &str)>,
+    policies_and_passwords: &[(&str, &str)],
 ) -> usize {
     let valid_passwords: Vec<(&str, &str)> = policies_and_passwords
-        .into_iter()
+        .iter()
         .filter(|p| password_validator(p.0, p.1))
         .cloned()
         .collect();

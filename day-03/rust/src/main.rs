@@ -2,7 +2,7 @@ use std::env;
 use std::fs;
 use std::path::Path;
 
-fn num_trees_encountered(tree_map: &Vec<&str>, slope: (usize, usize)) -> u32 {
+fn num_trees_encountered(tree_map: &[&str], slope: (usize, usize)) -> u32 {
     let num_cols = tree_map[0].chars().count();
     let num_rows = tree_map.len();
 
