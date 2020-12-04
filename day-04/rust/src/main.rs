@@ -59,25 +59,27 @@ impl Passport {
             _ => false,
         }
     }
-    fn part_one_validator(&self) -> bool {
-        self.byr.is_some()
-            && self.iyr.is_some()
-            && self.eyr.is_some()
-            && self.hgt.is_some()
-            && self.hcl.is_some()
-            && self.ecl.is_some()
-            && self.pid.is_some()
-    }
-    fn part_two_validator(&self) -> bool {
-        self.part_one_validator()
-            && self.byr_valid()
-            && self.iyr_valid()
-            && self.eyr_valid()
-            && self.hgt_valid()
-            && self.hcl_valid()
-            && self.ecl_valid()
-            && self.pid_valid()
-    }
+}
+
+fn part_two_validator(passport: &Passport) -> bool {
+    part_one_validator(passport)
+        && passport.byr_valid()
+        && passport.iyr_valid()
+        && passport.eyr_valid()
+        && passport.hgt_valid()
+        && passport.hcl_valid()
+        && passport.ecl_valid()
+        && passport.pid_valid()
+}
+
+fn part_one_validator(passport: &Passport) -> bool {
+    passport.byr.is_some()
+        && passport.iyr.is_some()
+        && passport.eyr.is_some()
+        && passport.hgt.is_some()
+        && passport.hcl.is_some()
+        && passport.ecl.is_some()
+        && passport.pid.is_some()
 }
 
 fn sum_valid_passports(passports: &Vec<Passport>, validator: fn(&Passport) -> bool) -> usize {
@@ -115,10 +117,10 @@ fn main() {
 
     println!(
         "Part One: {}",
-        sum_valid_passports(&passports, Passport::part_one_validator)
+        sum_valid_passports(&passports, part_one_validator)
     );
     println!(
         "Part Two: {}",
-        sum_valid_passports(&passports, Passport::part_two_validator)
+        sum_valid_passports(&passports, part_two_validator)
     );
 }
