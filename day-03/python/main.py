@@ -1,3 +1,4 @@
+import math
 import pathlib
 
 
@@ -28,10 +29,9 @@ with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
 
 print('Part One: ', num_trees_encountered(tree_map, (3, 1)))
 print(
-    'Part Two: ',
-    num_trees_encountered(tree_map, (1, 1))
-    * num_trees_encountered(tree_map, (3, 1))
-    * num_trees_encountered(tree_map, (5, 1))
-    * num_trees_encountered(tree_map, (7, 1))
-    * num_trees_encountered(tree_map, (1, 2)),
+    'Part Two :',
+    math.prod(
+        num_trees_encountered(tree_map, slope)
+        for slope in ((1, 1), (3, 1), (5, 1), (7, 1), (1, 2))
+    ),
 )
