@@ -18,9 +18,9 @@ def part_two_naive(numbers: list[int]) -> int:
                 return num1 * num2 * num3
 
 
-def itertools_combination_product(numbers: list[int], num_elements: int) -> int:
+def itertools_combination_product(numbers: list[int], num_expenses: int) -> int:
     expenses = [
-        e for e in itertools.combinations(numbers, num_elements) if sum(e) == 2020
+        e for e in itertools.combinations(numbers, num_expenses) if sum(e) == 2020
     ][0]
     return math.prod(expenses)
 
