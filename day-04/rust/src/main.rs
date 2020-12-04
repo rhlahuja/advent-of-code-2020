@@ -16,6 +16,7 @@ struct Passport {
     pid: Option<String>,
     cid: Option<String>,
 }
+
 impl Passport {
     fn validate_year(year: Option<&String>, min: i64, max: i64) -> bool {
         let year: i64 = year.unwrap().parse().unwrap_or(0);
@@ -79,6 +80,10 @@ impl Passport {
     }
 }
 
+fn sum_valid_passports(passports: &Vec<Passport>, validator: fn(&Passport) -> bool) -> usize {
+    passports.iter().filter(|x| validator(x)).count()
+}
+
 fn main() {
     let input_filepath = Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
@@ -110,10 +115,10 @@ fn main() {
 
     println!(
         "Part One: {}",
-        passports.iter().filter(|x| x.part_one_validator()).count()
+        sum_valid_passports(&passports, Passport::part_one_validator)
     );
     println!(
-        "Part One: {}",
-        passports.iter().filter(|x| x.part_two_validator()).count()
+        "Part Two: {}",
+        sum_valid_passports(&passports, Passport::part_two_validator)
     );
 }
