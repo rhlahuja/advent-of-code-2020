@@ -42,11 +42,13 @@ fn sum_valid_passwords(
 }
 
 fn main() {
-    let input_filepath = Path::new(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .unwrap()
-        .join("input.txt");
-    let input = fs::read_to_string(input_filepath).unwrap();
+    let input = fs::read_to_string(
+        Path::new(env!("CARGO_MANIFEST_DIR"))
+            .parent()
+            .unwrap()
+            .join("input.txt"),
+    )
+    .unwrap();
 
     let mut policies_and_passwords: Vec<(&str, &str)> = Vec::new();
     for line in input.lines() {

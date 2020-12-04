@@ -87,33 +87,33 @@ fn sum_valid_passports(passports: &Vec<Passport>, validator: fn(&Passport) -> bo
 }
 
 fn main() {
-    let input_filepath = Path::new(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .unwrap()
-        .join("input.txt");
-
-    let passports = fs::read_to_string(input_filepath)
-        .unwrap()
-        .split("\n\n")
-        .map(|passport_fields| {
-            let mut passport = Passport::default();
-            for field in passport_fields.split_ascii_whitespace() {
-                let mut key_val = field.split(':');
-                match key_val.next().unwrap() {
-                    "byr" => passport.byr = Some(key_val.next().unwrap().to_string()),
-                    "iyr" => passport.iyr = Some(key_val.next().unwrap().to_string()),
-                    "eyr" => passport.eyr = Some(key_val.next().unwrap().to_string()),
-                    "hgt" => passport.hgt = Some(key_val.next().unwrap().to_string()),
-                    "hcl" => passport.hcl = Some(key_val.next().unwrap().to_string()),
-                    "ecl" => passport.ecl = Some(key_val.next().unwrap().to_string()),
-                    "pid" => passport.pid = Some(key_val.next().unwrap().to_string()),
-                    "cid" => passport.cid = Some(key_val.next().unwrap().to_string()),
-                    other => panic!("Unknown passport field: {}", other),
-                }
+    let passports = fs::read_to_string(
+        Path::new(env!("CARGO_MANIFEST_DIR"))
+            .parent()
+            .unwrap()
+            .join("input.txt"),
+    )
+    .unwrap()
+    .split("\n\n")
+    .map(|passport_fields| {
+        let mut passport = Passport::default();
+        for field in passport_fields.split_ascii_whitespace() {
+            let mut key_val = field.split(':');
+            match key_val.next().unwrap() {
+                "byr" => passport.byr = Some(key_val.next().unwrap().to_string()),
+                "iyr" => passport.iyr = Some(key_val.next().unwrap().to_string()),
+                "eyr" => passport.eyr = Some(key_val.next().unwrap().to_string()),
+                "hgt" => passport.hgt = Some(key_val.next().unwrap().to_string()),
+                "hcl" => passport.hcl = Some(key_val.next().unwrap().to_string()),
+                "ecl" => passport.ecl = Some(key_val.next().unwrap().to_string()),
+                "pid" => passport.pid = Some(key_val.next().unwrap().to_string()),
+                "cid" => passport.cid = Some(key_val.next().unwrap().to_string()),
+                other => panic!("Unknown passport field: {}", other),
             }
-            passport
-        })
-        .collect::<Vec<Passport>>();
+        }
+        passport
+    })
+    .collect::<Vec<Passport>>();
 
     println!(
         "Part One: {}",

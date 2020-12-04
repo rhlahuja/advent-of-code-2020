@@ -23,7 +23,7 @@ FIELD_RULES = {
         'hcl': ({'pattern': r'^#[0-9a-f]{6}$'},),
         'pid': ({'pattern': r'^(\d{9})$'},),
     },
-    'optional': {'cid': ({'pattern': '(.*)'},)},
+    'optional': {'cid': ({'pattern': r'(.*)'},)},
 }
 
 
