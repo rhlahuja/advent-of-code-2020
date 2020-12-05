@@ -82,7 +82,7 @@ fn part_two_validator(passport: &Passport) -> bool {
         && passport.pid_valid()
 }
 
-fn sum_valid_passports(passports: &Vec<Passport>, validator: fn(&Passport) -> bool) -> usize {
+fn sum_valid_passports(passports: &[Passport], validator: fn(&Passport) -> bool) -> usize {
     passports.iter().filter(|x| validator(x)).count()
 }
 
@@ -97,18 +97,21 @@ fn main() {
     .split("\n\n")
     .map(|passport_fields| {
         let mut passport = Passport::default();
-        for field in passport_fields.split_ascii_whitespace() {
-            let mut key_val = field.split(':');
-            match key_val.next().unwrap() {
-                "byr" => passport.byr = Some(key_val.next().unwrap().to_string()),
-                "iyr" => passport.iyr = Some(key_val.next().unwrap().to_string()),
-                "eyr" => passport.eyr = Some(key_val.next().unwrap().to_string()),
-                "hgt" => passport.hgt = Some(key_val.next().unwrap().to_string()),
-                "hcl" => passport.hcl = Some(key_val.next().unwrap().to_string()),
-                "ecl" => passport.ecl = Some(key_val.next().unwrap().to_string()),
-                "pid" => passport.pid = Some(key_val.next().unwrap().to_string()),
-                "cid" => passport.cid = Some(key_val.next().unwrap().to_string()),
-                other => panic!("Unknown passport field: {}", other),
+        for field_data in passport_fields.split_ascii_whitespace() {
+            let mut field = field_data.split(':');
+            let field_key = field.next().unwrap();
+            let field_value = Some(field.next().unwrap().to_string());
+
+            match field_key {
+                "byr" => passport.byr = field_value,
+                "iyr" => passport.iyr = field_value,
+                "eyr" => passport.eyr = field_value,
+                "hgt" => passport.hgt = field_value,
+                "hcl" => passport.hcl = field_value,
+                "ecl" => passport.ecl = field_value,
+                "pid" => passport.pid = field_value,
+                "cid" => passport.cid = field_value,
+                other => panic!("Unrecognized passport field: '{}'", other),
             }
         }
         passport
