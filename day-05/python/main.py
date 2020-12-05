@@ -1,8 +1,8 @@
 import pathlib
 
 
-def binary_search(letters: str, first_half_letter: str, possible_range: int) -> int:
-    possible_values = list(range(possible_range))
+def binary_search(letters: str, first_half_letter: str, range_max: int) -> int:
+    possible_values = list(range(range_max))
     for letter in letters:
         middle_idx = int(len(possible_values) / 2)
         possible_values = (

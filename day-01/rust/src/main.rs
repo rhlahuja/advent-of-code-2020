@@ -44,21 +44,21 @@ fn main() {
     )
     .unwrap();
 
-    let mut vec: Vec<i32> = Vec::new();
+    let mut expenses: Vec<i32> = Vec::new();
     for line in input.lines() {
-        vec.push(line.parse::<i32>().unwrap());
+        expenses.push(line.parse::<i32>().unwrap());
     }
 
-    let part_one_naive_solution = part_one_naive(vec.as_slice());
-    let part_two_naive_solution = part_two_naive(vec.as_slice());
+    let part_one_naive_solution = part_one_naive(expenses.as_slice());
+    let part_two_naive_solution = part_two_naive(expenses.as_slice());
 
     assert_eq!(
         part_one_naive_solution,
-        itertools_combination_product(&vec, 2)
+        itertools_combination_product(&expenses, 2)
     );
     assert_eq!(
         part_two_naive_solution,
-        itertools_combination_product(&vec, 3)
+        itertools_combination_product(&expenses, 3)
     );
 
     println!("Part One: {}", part_one_naive_solution);
