@@ -1,4 +1,5 @@
 import pathlib
+from typing import Callable
 
 
 def part_one_validator(policy: str, password: str) -> bool:
@@ -14,7 +15,8 @@ def part_two_validator(policy: str, password: str) -> bool:
 
 
 def sum_valid_passwords(
-    password_validator, policies_and_passwords: list[list[str, str]]
+    password_validator: Callable[[str, str], bool],
+    policies_and_passwords: list[list[str, str]],
 ):
     return sum(
         password_validator(policy, password)

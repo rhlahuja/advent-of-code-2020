@@ -1,5 +1,6 @@
 import re
 import pathlib
+from typing import Callable
 
 
 FIELD_RULES = {
@@ -51,7 +52,10 @@ def part_two_validator(passport: dict[str, str]) -> bool:
     )
 
 
-def sum_valid_passports(passport_validator, passports: list[dict[str, str]]) -> int:
+def sum_valid_passports(
+    passport_validator: Callable[[dict[str, str]], bool],
+    passports: list[dict[str, str]],
+) -> int:
     return sum(passport_validator(passport) for passport in passports)
 
 
