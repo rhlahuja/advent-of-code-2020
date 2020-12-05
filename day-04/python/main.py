@@ -1,6 +1,6 @@
 import re
 import pathlib
-from typing import Callable
+from collections.abc import Callable
 
 
 FIELD_RULES = {
