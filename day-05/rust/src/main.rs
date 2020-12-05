@@ -39,11 +39,10 @@ fn main() {
 
     println!("Part One: {}", &seat_ids.iter().max().unwrap());
 
-    let mut missing_seat_id = 0;
     for seat_id in &seat_ids {
         if !seat_ids.contains(&(seat_id + 1)) && seat_ids.contains(&(seat_id + 2)) {
-            missing_seat_id = seat_id + 1
+            println!("Part Two: {}", seat_id + 1);
+            break;
         }
     }
-    println!("Part Two: {}", &missing_seat_id);
 }
