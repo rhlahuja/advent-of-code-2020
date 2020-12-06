@@ -38,7 +38,7 @@ fn main() {
                             character_counts
                         })
                         .into_iter()
-                        .filter(|&(_character, count)| count == answers.matches("\n").count() + 1)
+                        .filter(|&(_character, count)| count == answers.matches('\n').count() + 1)
                         .collect::<HashMap<char, usize>>()
                         .keys()
                         .len()
