@@ -17,13 +17,12 @@ fn main() {
         "Part One: {}",
         group_answers
             .iter()
-            .map(|group_answer| {
+            .fold(0, |sum_one_yes_answers, group_answer| {
                 let mut group_answer: Vec<char> = group_answer.replace("\n", "").chars().collect();
                 group_answer.sort_unstable();
                 group_answer.dedup();
-                group_answer.len()
+                sum_one_yes_answers + group_answer.len()
             })
-            .sum::<usize>()
     );
     println!(
         "Part Two: {}",
