@@ -27,9 +27,9 @@ def num_trees_encountered(tree_map: list[str], slope: tuple[int, int]) -> int:
 with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
     tree_map = f.read().splitlines()
 
-print('Part One: ', num_trees_encountered(tree_map, (3, 1)))
+print('Part One:', num_trees_encountered(tree_map, (3, 1)))
 print(
-    'Part Two :',
+    'Part Two:',
     math.prod(
         num_trees_encountered(tree_map, slope)
         for slope in ((1, 1), (3, 1), (5, 1), (7, 1), (1, 2))

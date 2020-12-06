@@ -68,5 +68,5 @@ with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
         ]
     ]
 
-print('Part One: ', sum_valid_passports(part_one_validator, passports))
-print('Part Two: ', sum_valid_passports(part_two_validator, passports))
+print('Part One:', sum_valid_passports(part_one_validator, passports))
+print('Part Two:', sum_valid_passports(part_two_validator, passports))

@@ -34,5 +34,5 @@ part_two_naive_solution = part_two_naive(numbers)
 assert part_one_naive_solution == itertools_combination_product(numbers, 2)
 assert part_two_naive_solution == itertools_combination_product(numbers, 3)
 
-print('Part One: ', part_one_naive_solution)
-print('Part Two: ', part_two_naive_solution)
+print('Part One:', part_one_naive_solution)
+print('Part Two:', part_two_naive_solution)
