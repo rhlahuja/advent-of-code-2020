@@ -11,7 +11,7 @@ fn part_one(group_answers: &[&str]) -> usize {
             group_answer.dedup();
             group_answer.len()
         })
-        .sum::<usize>()
+        .sum()
 }
 
 fn main() {
