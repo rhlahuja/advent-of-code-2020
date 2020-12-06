@@ -52,6 +52,12 @@ fn main() {
     let part_one_naive_solution = part_one_naive(expenses.as_slice());
     let part_two_naive_solution = part_two_naive(expenses.as_slice());
 
+    println!("Part One: {}", part_one_naive_solution);
+    println!("Part Two: {}", part_two_naive_solution);
+
+    assert_eq!(part_one_naive_solution, 482811);
+    assert_eq!(part_two_naive_solution, 193171814);
+
     assert_eq!(
         part_one_naive_solution,
         itertools_combination_product(&expenses, 2)
@@ -60,7 +66,4 @@ fn main() {
         part_two_naive_solution,
         itertools_combination_product(&expenses, 3)
     );
-
-    println!("Part One: {}", part_one_naive_solution);
-    println!("Part Two: {}", part_two_naive_solution);
 }

@@ -55,12 +55,12 @@ fn main() {
         policies_and_passwords.push(line.split(": ").collect_tuple().unwrap());
     }
 
-    println!(
-        "Part One: {}",
-        sum_valid_passwords(&part_one_validator, &policies_and_passwords)
-    );
-    println!(
-        "Part Two: {}",
-        sum_valid_passwords(&part_two_validator, &policies_and_passwords)
-    );
+    let part_one_solution = sum_valid_passwords(&part_one_validator, &policies_and_passwords);
+    let part_two_solution = sum_valid_passwords(&part_two_validator, &policies_and_passwords);
+
+    println!("Part One: {}", part_one_solution);
+    println!("Part Two: {}", part_two_solution);
+
+    assert_eq!(part_one_solution, 410);
+    assert_eq!(part_two_solution, 694);
 }

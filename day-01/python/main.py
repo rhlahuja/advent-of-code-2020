@@ -31,8 +31,11 @@ with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
 part_one_naive_solution = part_one_naive(numbers)
 part_two_naive_solution = part_two_naive(numbers)
 
+print('Part One:', part_one_naive_solution)
+print('Part Two:', part_two_naive_solution)
+
 assert part_one_naive_solution == itertools_combination_product(numbers, 2)
 assert part_two_naive_solution == itertools_combination_product(numbers, 3)
 
-print('Part One:', part_one_naive_solution)
-print('Part Two:', part_two_naive_solution)
+assert part_one_naive_solution == 482811
+assert part_two_naive_solution == 193171814

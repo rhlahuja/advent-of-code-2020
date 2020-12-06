@@ -37,13 +37,16 @@ fn main() {
     .unwrap();
     let tree_map: Vec<&str> = input.lines().collect();
 
-    println!("Part One: {}", num_trees_encountered(&tree_map, (3, 1)));
-    println!(
-        "Part One: {}",
-        num_trees_encountered(&tree_map, (1, 1))
-            * num_trees_encountered(&tree_map, (3, 1))
-            * num_trees_encountered(&tree_map, (5, 1))
-            * num_trees_encountered(&tree_map, (7, 1))
-            * num_trees_encountered(&tree_map, (1, 2))
-    );
+    let part_one_solution = num_trees_encountered(&tree_map, (3, 1));
+    let part_two_solution = num_trees_encountered(&tree_map, (1, 1))
+        * num_trees_encountered(&tree_map, (3, 1))
+        * num_trees_encountered(&tree_map, (5, 1))
+        * num_trees_encountered(&tree_map, (7, 1))
+        * num_trees_encountered(&tree_map, (1, 2));
+
+    println!("Part One: {}", part_one_solution);
+    println!("Part Two: {}", part_two_solution);
+
+    assert_eq!(part_one_solution, 265);
+    assert_eq!(part_two_solution, 3154761400);
 }

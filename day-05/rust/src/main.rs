@@ -37,12 +37,19 @@ fn main() {
         seat_ids.push(get_seat_id(&line));
     }
 
-    println!("Part One: {}", &seat_ids.iter().max().unwrap());
+    let part_one_solution = *seat_ids.iter().max().unwrap();
 
+    let mut part_two_solution = 0;
     for seat_id in &seat_ids {
         if !seat_ids.contains(&(seat_id + 1)) && seat_ids.contains(&(seat_id + 2)) {
-            println!("Part Two: {}", seat_id + 1);
+            part_two_solution = seat_id + 1;
             break;
         }
     }
+
+    println!("Part One: {}", part_one_solution);
+    println!("Part Two: {}", part_two_solution);
+
+    assert_eq!(part_one_solution, 883);
+    assert_eq!(part_two_solution, 532);
 }

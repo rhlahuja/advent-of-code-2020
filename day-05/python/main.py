@@ -22,8 +22,14 @@ def get_seat_id(letters: str) -> int:
 with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
     seat_ids = [get_seat_id(letters) for letters in f.read().splitlines()]
 
-print('Part One:', max(seat_ids))
-print(
-    'Part Two:',
-    [s + 1 for s in seat_ids if s + 1 not in seat_ids and s + 2 in seat_ids][0],
-)
+
+part_one_solution = max(seat_ids)
+part_two_solution = [
+    s + 1 for s in seat_ids if s + 1 not in seat_ids and s + 2 in seat_ids
+][0]
+
+print('Part One:', part_one_solution)
+print('Part Two:', part_two_solution)
+
+assert part_one_solution == 883
+assert part_two_solution == 532

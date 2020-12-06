@@ -27,5 +27,11 @@ def sum_valid_passwords(
 with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
     policies_and_passwords = [line.split(': ') for line in f.read().splitlines()]
 
-print('Part One:', sum_valid_passwords(part_one_validator, policies_and_passwords))
-print('Part Two:', sum_valid_passwords(part_two_validator, policies_and_passwords))
+part_one_solution = sum_valid_passwords(part_one_validator, policies_and_passwords)
+part_two_solution = sum_valid_passwords(part_two_validator, policies_and_passwords)
+
+print('Part One:', part_one_solution)
+print('Part Two:', part_two_solution)
+
+assert part_one_solution == 410
+assert part_two_solution == 694

@@ -118,12 +118,12 @@ fn main() {
     })
     .collect::<Vec<Passport>>();
 
-    println!(
-        "Part One: {}",
-        sum_valid_passports(&passports, part_one_validator)
-    );
-    println!(
-        "Part Two: {}",
-        sum_valid_passports(&passports, part_two_validator)
-    );
+    let part_one_solution = sum_valid_passports(&passports, part_one_validator);
+    let part_two_solution = sum_valid_passports(&passports, part_two_validator);
+
+    println!("Part One: {}", part_one_solution);
+    println!("Part Two: {}", part_two_solution);
+
+    assert_eq!(part_one_solution, 233);
+    assert_eq!(part_two_solution, 111);
 }
