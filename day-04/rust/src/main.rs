@@ -83,7 +83,10 @@ fn part_two_validator(passport: &Passport) -> bool {
 }
 
 fn sum_valid_passports(passports: &[Passport], validator: fn(&Passport) -> bool) -> usize {
-    passports.iter().filter(|x| validator(x)).count()
+    passports
+        .iter()
+        .filter(|passport| validator(passport))
+        .count()
 }
 
 fn main() {
