@@ -23,9 +23,9 @@ fn main() {
         });
     let part_two_solution = group_answers
         .iter()
-        .fold(0, |sum_all_yes_answers, answers| {
+        .fold(0, |sum_all_yes_answers, group_answer| {
             sum_all_yes_answers
-                + answers
+                + group_answer
                     .replace("\n", "")
                     .chars()
                     .fold(HashMap::new(), |mut character_counts, character| {
@@ -33,7 +33,7 @@ fn main() {
                         character_counts
                     })
                     .into_iter()
-                    .filter(|&(_character, count)| count == answers.matches('\n').count() + 1)
+                    .filter(|&(_character, count)| count == group_answer.matches('\n').count() + 1)
                     .collect::<HashMap<_, _>>()
                     .keys()
                     .len()
