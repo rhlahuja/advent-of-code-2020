@@ -16,7 +16,7 @@ fn main() {
     let part_one_solution = group_answers
         .iter()
         .fold(0, |sum_one_yes_answers, group_answer| {
-            let mut group_answer: Vec<char> = group_answer.replace("\n", "").chars().collect();
+            let mut group_answer: Vec<_> = group_answer.replace("\n", "").chars().collect();
             group_answer.sort_unstable();
             group_answer.dedup();
             sum_one_yes_answers + group_answer.len()
@@ -34,7 +34,7 @@ fn main() {
                     })
                     .into_iter()
                     .filter(|&(_character, count)| count == answers.matches('\n').count() + 1)
-                    .collect::<HashMap<char, usize>>()
+                    .collect::<HashMap<_, _>>()
                     .keys()
                     .len()
         });

@@ -3,7 +3,7 @@ use std::fs;
 use std::path::Path;
 
 fn binary_search(letters: &str, first_half_letter: char, range_max: u32) -> u32 {
-    let mut possible_values: Vec<u32> = (0..range_max).collect();
+    let mut possible_values: Vec<_> = (0..range_max).collect();
 
     for character in letters.chars() {
         let (first, last) = possible_values.split_at(possible_values.len() / 2);
