@@ -50,7 +50,7 @@ fn main() {
     )
     .unwrap();
 
-    let mut policies_and_passwords: Vec<(&str, &str)> = Vec::new();
+    let mut policies_and_passwords = Vec::new();
     for line in input.lines() {
         policies_and_passwords.push(line.split(": ").collect_tuple().unwrap());
     }

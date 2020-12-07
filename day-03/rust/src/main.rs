@@ -35,7 +35,7 @@ fn main() {
             .join("input.txt"),
     )
     .unwrap();
-    let tree_map: Vec<&str> = input.lines().collect();
+    let tree_map: Vec<_> = input.lines().collect();
 
     let part_one_solution = num_trees_encountered(&tree_map, (3, 1));
     let part_two_solution = num_trees_encountered(&tree_map, (1, 1))

@@ -32,7 +32,7 @@ fn main() {
     )
     .unwrap();
 
-    let mut seat_ids: Vec<_> = Vec::new();
+    let mut seat_ids = Vec::new();
     for line in input.lines() {
         seat_ids.push(get_seat_id(&line));
     }

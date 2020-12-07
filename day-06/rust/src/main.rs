@@ -11,7 +11,7 @@ fn main() {
             .join("input.txt"),
     )
     .unwrap();
-    let group_answers: Vec<&str> = input.split("\n\n").collect();
+    let group_answers: Vec<_> = input.split("\n\n").collect();
 
     let part_one_solution = group_answers
         .iter()

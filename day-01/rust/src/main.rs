@@ -44,9 +44,9 @@ fn main() {
     )
     .unwrap();
 
-    let mut expenses: Vec<i32> = Vec::new();
+    let mut expenses = Vec::new();
     for line in input.lines() {
-        expenses.push(line.parse::<i32>().unwrap());
+        expenses.push(line.parse().unwrap());
     }
 
     let part_one_naive_solution = part_one_naive(expenses.as_slice());
