@@ -32,23 +32,20 @@ fn main() {
     )
     .unwrap();
 
-    let mut seat_ids: Vec<u32> = Vec::new();
+    let mut seat_ids: Vec<_> = Vec::new();
     for line in input.lines() {
         seat_ids.push(get_seat_id(&line));
     }
 
     let part_one_solution = *seat_ids.iter().max().unwrap();
-
-    let mut part_two_solution = 0;
-    for seat_id in &seat_ids {
-        if !seat_ids.contains(&(seat_id + 1)) && seat_ids.contains(&(seat_id + 2)) {
-            part_two_solution = seat_id + 1;
-            break;
-        }
-    }
+    let part_two_solution = seat_ids
+        .iter()
+        .find(|seat_id| !&seat_ids.contains(&(*seat_id + 1)) && seat_ids.contains(&(*seat_id + 2)))
+        .unwrap()
+        + 1;
 
     println!("Part One: {}", part_one_solution);
-    println!("Part Two: {}", part_two_solution);
+    println!("Part Two: {:?}", part_two_solution);
 
     assert_eq!(part_one_solution, 883);
     assert_eq!(part_two_solution, 532);
