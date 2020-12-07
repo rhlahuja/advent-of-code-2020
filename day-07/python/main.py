@@ -6,15 +6,15 @@ with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
     bag_rules_data = [line.split(' bags contain ') for line in f.read().splitlines()]
 
 bag_rules = {}
-for bag, rules in bag_rules_data:
-    bag_rule_dict = {}
+for bag_color, rules in bag_rules_data:
+    bag_color_rules = {}
     for rule in rules.split(', '):
         rule = rule.rstrip('.')
         if rule == 'no other bags':
             break
         match = re.match(r'(\d)+ (.*) bags?', rule)
-        bag_rule_dict[match.group(2)] = int(match.group(1))
-    bag_rules[bag] = bag_rule_dict
+        bag_color_rules[match.group(2)] = int(match.group(1))
+    bag_rules[bag_color] = bag_color_rules
 
 
 def is_valid_bag(bag_color: str, valid_color: str, bag_rules: dict[str, dict]) -> bool:
