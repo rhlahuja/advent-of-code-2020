@@ -17,13 +17,13 @@ for bag_color, rules in bag_rules_data:
     bag_rules[bag_color] = bag_color_rules
 
 
-def contains_valid_bag(
-    bag_color: str, valid_color: str, bag_rules: dict[str, dict]
+def contains_bag(
+    enclosing_bag_color: str, contained_bag_color: str, bag_rules: dict[str, dict]
 ) -> bool:
     return any(
-        valid_color in bag_rules[bag_color]
-        or contains_valid_bag(color, valid_color, bag_rules)
-        for color in bag_rules[bag_color]
+        contained_bag_color in bag_rules[enclosing_bag_color]
+        or contains_bag(color, contained_bag_color, bag_rules)
+        for color in bag_rules[enclosing_bag_color]
     )
 
 
@@ -35,10 +35,7 @@ def get_bag_count(bag_color: str, bag_rules: dict[str, dict]) -> int:
 
 
 part_one_solution = sum(
-    (
-        contains_valid_bag(bag_color, 'shiny gold', bag_rules)
-        for bag_color in bag_rules.keys()
-    )
+    (contains_bag(bag_color, 'shiny gold', bag_rules) for bag_color in bag_rules.keys())
 )
 part_two_solution = get_bag_count('shiny gold', bag_rules)
 

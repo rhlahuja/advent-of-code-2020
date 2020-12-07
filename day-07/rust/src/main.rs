@@ -5,16 +5,18 @@ use std::path::Path;
 
 use regex::Regex;
 
-fn contains_valid_bag(
-    bag_color: &str,
-    valid_color: &str,
+fn contains_bag(
+    enclosing_bag_color: &str,
+    contained_bag_color: &str,
     bag_rules: &HashMap<String, HashMap<String, u32>>,
 ) -> bool {
     bag_rules
-        .get(bag_color)
+        .get(enclosing_bag_color)
         .unwrap()
         .keys()
-        .any(|color| valid_color == color || contains_valid_bag(&color, &valid_color, &bag_rules))
+        .any(|color| {
+            contained_bag_color == color || contains_bag(&color, &contained_bag_color, &bag_rules)
+        })
 }
 
 fn get_bag_count(bag_color: &str, bag_rules: &HashMap<String, HashMap<String, u32>>) -> u32 {
@@ -68,7 +70,7 @@ fn main() {
 
     let part_one_solution = bag_rules
         .keys()
-        .filter(|bag_color| contains_valid_bag(bag_color, "shiny gold", &bag_rules))
+        .filter(|bag_color| contains_bag(bag_color, "shiny gold", &bag_rules))
         .count();
     let part_two_solution = get_bag_count("shiny gold", &bag_rules);
 
