@@ -1,7 +1,6 @@
 use std::fs;
 use std::path::Path;
 
-extern crate regex;
 use regex::Regex;
 
 #[derive(Default)]

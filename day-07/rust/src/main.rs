@@ -3,7 +3,6 @@ use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
 
-extern crate regex;
 use regex::Regex;
 
 fn contains_valid_bag(
