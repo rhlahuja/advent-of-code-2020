@@ -52,7 +52,7 @@ fn main() {
                 break;
             }
 
-            let match_groups = Regex::new(r"(\d)+ (.*) bags?")
+            let match_groups = Regex::new(r"(\d+) (.*) bags?")
                 .unwrap()
                 .captures(&bag_rule)
                 .unwrap();

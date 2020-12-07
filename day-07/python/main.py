@@ -12,7 +12,7 @@ for bag_color, rules in bag_rules_data:
         rule = rule.rstrip('.')
         if rule == 'no other bags':
             break
-        match = re.match(r'(\d)+ (.*) bags?', rule)
+        match = re.match(r'(\d+) (.*) bags?', rule)
         bag_color_rules[match.group(2)] = int(match.group(1))
     bag_rules[bag_color] = bag_color_rules
 
