@@ -11,21 +11,18 @@ struct Program {
 }
 
 impl Program {
-    fn run(&mut self, mut index: i32) -> (bool, &i32) {
-        for instruction in &self.instructions[index as usize..] {
-            if self
-                .executed_instruction_indices
-                .contains(&(index as usize))
-            {
+    fn run(&mut self, mut index: usize) -> (bool, &i32) {
+        for instruction in &self.instructions[index..] {
+            if self.executed_instruction_indices.contains(&(index)) {
                 return (false, &self.accumulator);
             }
             let (operation, value) = &instruction.split(' ').collect_tuple().unwrap();
             let value = value.parse::<i32>().unwrap();
-            self.executed_instruction_indices.insert(index as usize);
+            self.executed_instruction_indices.insert(index);
             match *operation {
                 "acc" => self.accumulator += value,
                 "jmp" => {
-                    return self.run(index + value);
+                    return self.run((index as i32 + value) as usize);
                 }
                 "nop" => (),
                 _ => panic!(
