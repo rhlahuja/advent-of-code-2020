@@ -14,7 +14,7 @@ struct Program {
 impl Program {
     fn run(&mut self, mut index: usize) -> (bool, &i32) {
         for instruction in &self.instructions[index..] {
-            if self.executed_instruction_indices.contains(&(index)) {
+            if self.executed_instruction_indices.contains(&index) {
                 return (false, &self.accumulator);
             }
             let (operation, value) = &instruction.split(' ').collect_tuple().unwrap();
