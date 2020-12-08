@@ -57,12 +57,9 @@ fn main() {
                 .unwrap()
                 .captures(&bag_rule)
                 .unwrap();
-            let contained_bag_color = &match_groups.get(2).unwrap().as_str();
-            let contained_bag_count = &match_groups.get(1).unwrap().as_str();
-
             bag_color_rules.insert(
-                contained_bag_color.to_string(),
-                contained_bag_count.to_string().parse::<u32>().unwrap(),
+                match_groups[2].parse::<String>().unwrap(),
+                match_groups[1].parse::<u32>().unwrap(),
             );
         }
         bag_rules.insert(bag_color.to_string(), bag_color_rules);
