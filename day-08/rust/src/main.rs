@@ -28,7 +28,10 @@ impl Program {
                     return self.run(index + value);
                 }
                 "nop" => (),
-                _ => panic!("Unrecognized operation"),
+                _ => panic!(
+                    "unrecognized instruction '{}' at index {}",
+                    &instruction, index
+                ),
             }
             index += 1;
         }
@@ -46,7 +49,7 @@ fn flip_instruction(index: usize, instructions: &[String]) -> Vec<String> {
         "nop" => {
             new_instructions[index] = old_instruction.replace("nop", "jmp");
         }
-        _ => panic!("Unrecognized operation"),
+        _ => (),
     };
     new_instructions
 }
