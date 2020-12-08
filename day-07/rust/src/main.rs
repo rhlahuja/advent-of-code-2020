@@ -53,13 +53,13 @@ fn main() {
                 break;
             }
 
-            let match_groups = Regex::new(r"(\d+) (.*) bags?")
+            let matches = Regex::new(r"(\d+) (.*) bags?")
                 .unwrap()
                 .captures(&bag_rule)
                 .unwrap();
             bag_color_rules.insert(
-                match_groups[2].parse::<String>().unwrap(),
-                match_groups[1].parse::<u32>().unwrap(),
+                matches[2].parse::<String>().unwrap(),
+                matches[1].parse::<u32>().unwrap(),
             );
         }
         bag_rules.insert(bag_color.to_string(), bag_color_rules);
