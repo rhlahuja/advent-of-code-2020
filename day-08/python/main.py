@@ -27,25 +27,27 @@ class Program:
 
 
 def flip_instruction(index: int, instructions: list[str]) -> list[str]:
+    old_instruction = instructions[index]
     new_instructions = instructions.copy()
     if instructions[index].startswith('nop'):
-        new_instructions[index] = instructions[index].replace('nop', 'jmp')
+        new_instructions[index] = old_instruction.replace('nop', 'jmp')
     elif instructions[index].startswith('jmp'):
-        new_instructions[index] = instructions[index].replace('jmp', 'nop')
+        new_instructions[index] = old_instruction.replace('jmp', 'nop')
     return new_instructions
 
 
+def fix_program(instructions: list[str]) -> int:
+    for index, instruction in enumerate(instructions):
+        if instruction.startswith(('nop', 'jmp')):
+            program_terminates, accmumlator = Program(
+                flip_instruction(index, instructions)
+            ).run(0)
+            if program_terminates:
+                return accmumlator
+
+
 part_one_solution = Program(instructions).run(0)[1]
-
-for index, instruction in enumerate(instructions):
-    if instruction.startswith(('nop', 'jmp')):
-        program_terminates, accmumlator = Program(
-            flip_instruction(index, instructions)
-        ).run(0)
-        if program_terminates:
-            part_two_solution = accmumlator
-            break
-
+part_two_solution = fix_program(instructions)
 
 print('Part One:', part_one_solution)
 print('Part Two:', part_two_solution)
