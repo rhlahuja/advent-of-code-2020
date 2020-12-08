@@ -11,7 +11,7 @@ class Program:
     executed_instruction_indices: set[int] = field(default_factory=set)
     accumulator: int = 0
 
-    def run(self, index: int) -> tuple[bool, int]:
+    def run(self, index: int = 0) -> tuple[bool, int]:
         for instruction in self.instructions[index:]:
             if index in self.executed_instruction_indices:
                 return False, self.accumulator
@@ -41,12 +41,12 @@ def fix_program(instructions: list[str]) -> int:
         if instruction.startswith(('nop', 'jmp')):
             program_terminates, accmumlator = Program(
                 flip_instruction(index, instructions)
-            ).run(0)
+            ).run()
             if program_terminates:
                 return accmumlator
 
 
-part_one_solution = Program(instructions).run(0)[1]
+part_one_solution = Program(instructions).run()[1]
 part_two_solution = fix_program(instructions)
 
 print('Part One:', part_one_solution)
