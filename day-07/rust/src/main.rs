@@ -1,8 +1,8 @@
-use itertools::Itertools;
 use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
 
+use itertools::Itertools;
 use regex::Regex;
 
 fn contains_bag(

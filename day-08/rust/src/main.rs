@@ -1,7 +1,8 @@
-use itertools::Itertools;
 use std::collections::HashSet;
 use std::fs;
 use std::path::Path;
+
+use itertools::Itertools;
 
 #[derive(Default)]
 struct Program {
