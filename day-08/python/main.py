@@ -29,9 +29,9 @@ class Program:
 def flip_instruction(index: int, instructions: list[str]) -> list[str]:
     old_instruction = instructions[index]
     new_instructions = instructions.copy()
-    if instructions[index].startswith('nop'):
+    if old_instruction.startswith('nop'):
         new_instructions[index] = old_instruction.replace('nop', 'jmp')
-    elif instructions[index].startswith('jmp'):
+    elif old_instruction.startswith('jmp'):
         new_instructions[index] = old_instruction.replace('jmp', 'nop')
     return new_instructions
 
