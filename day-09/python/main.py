@@ -1,9 +1,6 @@
 import pathlib
 import itertools
 
-with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
-    numbers = [int(line) for line in f.read().splitlines()]
-
 
 def find_inconsistent_number(numbers: list[int], preamble_length: int = 25) -> int:
     current_index = preamble_length
@@ -30,6 +27,9 @@ def sum_min_max_operands(numbers: list[int], target_sum: int) -> int:
         else:
             return min(operands) + max(operands)
 
+
+with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
+    numbers = [int(line) for line in f.read().splitlines()]
 
 part_one_solution = find_inconsistent_number(numbers)
 part_two_solution = sum_min_max_operands(numbers, part_one_solution)
