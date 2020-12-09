@@ -38,18 +38,16 @@ fn sum_min_max_operands(numbers: &[i64], target_sum: i64) -> i64 {
 }
 
 fn main() {
-    let input = fs::read_to_string(
+    let numbers: Vec<_> = fs::read_to_string(
         Path::new(env!("CARGO_MANIFEST_DIR"))
             .parent()
             .unwrap()
             .join("input.txt"),
     )
-    .unwrap();
-
-    let mut numbers = Vec::new();
-    for line in input.lines() {
-        numbers.push(line.parse().unwrap());
-    }
+    .unwrap()
+    .lines()
+    .map(|line| line.parse().unwrap())
+    .collect();
 
     let part_one_solution = find_inconsistent_number(&numbers, 25);
     let part_two_solution = sum_min_max_operands(&numbers, part_one_solution);

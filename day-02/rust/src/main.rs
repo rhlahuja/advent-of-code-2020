@@ -48,11 +48,10 @@ fn main() {
             .join("input.txt"),
     )
     .unwrap();
-
-    let mut policies_and_passwords = Vec::new();
-    for line in input.lines() {
-        policies_and_passwords.push(line.split(": ").collect_tuple().unwrap());
-    }
+    let policies_and_passwords: Vec<_> = input
+        .lines()
+        .map(|line| line.split(": ").collect_tuple().unwrap())
+        .collect();
 
     let part_one_solution = sum_valid_passwords(&part_one_validator, &policies_and_passwords);
     let part_two_solution = sum_valid_passwords(&part_two_validator, &policies_and_passwords);

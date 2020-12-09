@@ -23,18 +23,16 @@ fn get_seat_id(letters: &str) -> u32 {
 }
 
 fn main() {
-    let input = fs::read_to_string(
+    let seat_ids: Vec<_> = fs::read_to_string(
         Path::new(env!("CARGO_MANIFEST_DIR"))
             .parent()
             .unwrap()
             .join("input.txt"),
     )
-    .unwrap();
-
-    let mut seat_ids = Vec::new();
-    for line in input.lines() {
-        seat_ids.push(get_seat_id(&line));
-    }
+    .unwrap()
+    .lines()
+    .map(|line| get_seat_id(&line))
+    .collect();
 
     let part_one_solution = *seat_ids.iter().max().unwrap();
     let part_two_solution = seat_ids

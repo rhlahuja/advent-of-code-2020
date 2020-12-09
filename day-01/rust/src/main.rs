@@ -35,18 +35,16 @@ fn itertools_combination_product(numbers: &[i32], num_expenses: usize) -> i32 {
 }
 
 fn main() {
-    let input = fs::read_to_string(
+    let expenses: Vec<_> = fs::read_to_string(
         Path::new(env!("CARGO_MANIFEST_DIR"))
             .parent()
             .unwrap()
             .join("input.txt"),
     )
-    .unwrap();
-
-    let mut expenses = Vec::new();
-    for line in input.lines() {
-        expenses.push(line.parse().unwrap());
-    }
+    .unwrap()
+    .lines()
+    .map(|line| line.parse().unwrap())
+    .collect();
 
     let part_one_naive_solution = part_one_naive(expenses.as_slice());
     let part_two_naive_solution = part_two_naive(expenses.as_slice());
