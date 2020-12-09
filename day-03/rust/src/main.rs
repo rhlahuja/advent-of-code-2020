@@ -27,14 +27,16 @@ fn num_trees_encountered(tree_map: &[&str], slope: (usize, usize)) -> u32 {
 }
 
 fn main() {
-    let input = fs::read_to_string(
+    let tree_map: Vec<_> = fs::read_to_string(
         Path::new(env!("CARGO_MANIFEST_DIR"))
             .parent()
             .unwrap()
             .join("input.txt"),
     )
-    .unwrap();
-    let tree_map: Vec<_> = input.lines().collect();
+    .unwrap()
+    .lines()
+    .map(|line| line.parse().unwrap())
+    .collect();
 
     let part_one_solution = num_trees_encountered(&tree_map, (3, 1));
     let part_two_solution = num_trees_encountered(&tree_map, (1, 1))

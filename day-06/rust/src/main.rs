@@ -3,14 +3,16 @@ use std::fs;
 use std::path::Path;
 
 fn main() {
-    let input = fs::read_to_string(
+    let group_answers: Vec<String> = fs::read_to_string(
         Path::new(env!("CARGO_MANIFEST_DIR"))
             .parent()
             .unwrap()
             .join("input.txt"),
     )
-    .unwrap();
-    let group_answers: Vec<_> = input.split("\n\n").collect();
+    .unwrap()
+    .split("\n\n")
+    .map(|line| line.parse().unwrap())
+    .collect();
 
     let part_one_solution = group_answers
         .iter()

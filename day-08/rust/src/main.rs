@@ -69,14 +69,16 @@ fn fix_program(instructions: &[String]) -> i32 {
 }
 
 fn main() {
-    let input = fs::read_to_string(
+    let instructions: Vec<_> = fs::read_to_string(
         Path::new(env!("CARGO_MANIFEST_DIR"))
             .parent()
             .unwrap()
             .join("input.txt"),
     )
-    .unwrap();
-    let instructions: Vec<String> = input.lines().map(|l| l.to_string()).collect();
+    .unwrap()
+    .lines()
+    .map(|l| l.to_string())
+    .collect();
 
     let mut part_one_program = Program {
         instructions: instructions.clone(),
