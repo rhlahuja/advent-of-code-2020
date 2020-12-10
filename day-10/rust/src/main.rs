@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
 
-fn find_jolt_differences(adapter_jolts: &[u32]) -> u32 {
+fn find_jolt_differences_product(adapter_jolts: &[u32]) -> u32 {
     let mut jolt_differences = HashMap::new();
     for (index, jolts) in adapter_jolts[..adapter_jolts.len() - 1].iter().enumerate() {
         *jolt_differences
@@ -24,11 +24,11 @@ fn main() {
     .map(|l| l.parse().unwrap())
     .collect();
 
-    adapter_jolts.sort();
+    adapter_jolts.sort_unstable();
     adapter_jolts.insert(0, 0);
     adapter_jolts.push(adapter_jolts.last().unwrap() + 3);
 
-    let part_one_solution = find_jolt_differences(&adapter_jolts);
+    let part_one_solution = find_jolt_differences_product(&adapter_jolts);
 
     println!("Part One: {}", &part_one_solution);
 
