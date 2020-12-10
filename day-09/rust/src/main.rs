@@ -4,7 +4,7 @@ use std::path::Path;
 
 use itertools::Itertools;
 
-fn find_inconsistent_number_naive(numbers: &[i64], preamble_length: usize) -> i64 {
+fn find_inconsistent_number_naive(numbers: &[usize], preamble_length: usize) -> usize {
     let mut current_index = preamble_length;
     for number in numbers[preamble_length..].iter() {
         if numbers[current_index - preamble_length..current_index]
@@ -20,7 +20,7 @@ fn find_inconsistent_number_naive(numbers: &[i64], preamble_length: usize) -> i6
     0
 }
 
-fn find_inconsistent_number_windows(numbers: &[i64], preamble_length: usize) -> i64 {
+fn find_inconsistent_number_windows(numbers: &[usize], preamble_length: usize) -> usize {
     numbers
         .windows(preamble_length + 1)
         .find(|window| {
@@ -30,15 +30,15 @@ fn find_inconsistent_number_windows(numbers: &[i64], preamble_length: usize) -> 
                 .all(|(a, b)| a + b != window[preamble_length])
         })
         .map(|window| window[preamble_length])
-        .unwrap() as i64
+        .unwrap()
 }
 
-fn sum_min_max_operands(numbers: &[i64], target_sum: i64) -> i64 {
+fn sum_min_max_operands(numbers: &[usize], target_sum: usize) -> usize {
     let (mut min_index, mut max_index) = (0, 0);
 
     while min_index < numbers.len() {
         let operands = &numbers[min_index..max_index];
-        match operands.iter().sum::<i64>().cmp(&target_sum) {
+        match operands.iter().sum::<usize>().cmp(&target_sum) {
             Ordering::Less => max_index += 1,
             Ordering::Greater => min_index += 1,
             Ordering::Equal => {
