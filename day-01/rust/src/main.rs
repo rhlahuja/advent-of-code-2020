@@ -43,7 +43,7 @@ fn main() {
     )
     .unwrap()
     .lines()
-    .map(|line| line.parse().unwrap())
+    .map(|l| l.parse().unwrap())
     .collect();
 
     let part_one_naive_solution = part_one_naive(expenses.as_slice());

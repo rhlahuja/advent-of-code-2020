@@ -31,7 +31,7 @@ fn main() {
     )
     .unwrap()
     .lines()
-    .map(|line| get_seat_id(&line))
+    .map(|l| get_seat_id(&l))
     .collect();
 
     let part_one_solution = *seat_ids.iter().max().unwrap();

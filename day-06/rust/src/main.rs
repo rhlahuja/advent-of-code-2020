@@ -11,7 +11,7 @@ fn main() {
     )
     .unwrap()
     .split("\n\n")
-    .map(|line| line.parse().unwrap())
+    .map(|l| l.parse().unwrap())
     .collect();
 
     let part_one_solution = group_answers

@@ -58,7 +58,7 @@ fn main() {
     )
     .unwrap()
     .lines()
-    .map(|line| line.parse().unwrap())
+    .map(|l| l.parse().unwrap())
     .collect();
 
     let part_one_solution = find_inconsistent_number_naive(&numbers, 25);

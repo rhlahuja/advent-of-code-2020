@@ -50,7 +50,7 @@ fn main() {
     .unwrap();
     let policies_and_passwords: Vec<_> = input
         .lines()
-        .map(|line| line.split(": ").collect_tuple().unwrap())
+        .map(|l| l.split(": ").collect_tuple().unwrap())
         .collect();
 
     let part_one_solution = sum_valid_passwords(&part_one_validator, &policies_and_passwords);

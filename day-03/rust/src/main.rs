@@ -35,7 +35,7 @@ fn main() {
     )
     .unwrap()
     .lines()
-    .map(|line| line.parse().unwrap())
+    .map(|l| l.parse().unwrap())
     .collect();
 
     let part_one_solution = num_trees_encountered(&tree_map, (3, 1));
