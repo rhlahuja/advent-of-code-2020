@@ -10,12 +10,12 @@ def find_joltage_differences_product(adapter_jolts: list[int]) -> int:
 
 
 def find_valid_permutations(adapter_jolts: list[int]) -> int:
-    valid_permutations = {0: 1}
+    num_valid_permutations = {0: 1}
     for jolts in adapter_jolts[1:]:
-        valid_permutations[jolts] = sum(
-            valid_permutations.get(jolts - delta, 0) for delta in range(1, 4)
+        num_valid_permutations[jolts] = sum(
+            num_valid_permutations.get(jolts - delta, 0) for delta in range(1, 4)
         )
-    return valid_permutations[adapter_jolts[-1]]
+    return num_valid_permutations[adapter_jolts[-1]]
 
 
 with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
