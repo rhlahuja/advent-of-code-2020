@@ -13,20 +13,20 @@ fn find_jolt_differences_product(adapters: &[i64]) -> i64 {
 }
 
 fn find_num_valid_permutations(adapters: &[i64]) -> i64 {
-    let mut num_valid_permutations: HashMap<_, _> = [(0, 1)].iter().cloned().collect();
+    let mut num_valid_arrangements: HashMap<_, _> = [(0, 1)].iter().cloned().collect();
     for adapter_jolts in adapters[1..].iter() {
-        num_valid_permutations.insert(
+        num_valid_arrangements.insert(
             *adapter_jolts,
             (1..4)
                 .map(|delta| {
-                    num_valid_permutations
+                    num_valid_arrangements
                         .get(&(adapter_jolts - delta))
                         .unwrap_or(&0)
                 })
                 .sum(),
         );
     }
-    num_valid_permutations[&adapters.last().unwrap()]
+    num_valid_arrangements[&adapters.last().unwrap()]
 }
 
 fn main() {
