@@ -26,12 +26,12 @@ fn part_two_naive(numbers: &[i32]) -> i32 {
 }
 
 fn itertools_combination_product(numbers: &[i32], num_expenses: usize) -> i32 {
-    for expenses in numbers.iter().combinations(num_expenses) {
-        if expenses.clone().into_iter().sum::<i32>() == 2020 {
-            return expenses.into_iter().product::<i32>();
-        }
-    }
-    0
+    numbers
+        .iter()
+        .combinations(num_expenses)
+        .find(|expenses| expenses.clone().into_iter().sum::<i32>() == 2020)
+        .map(|expenses| expenses.into_iter().product())
+        .unwrap()
 }
 
 fn main() {
