@@ -3,12 +3,13 @@ use std::fs;
 use std::path::Path;
 
 fn find_jolt_differences_product(adapters: &[i64]) -> i64 {
-    let mut jolt_differences = HashMap::new();
-    for (index, adapter_jolts) in adapters[..adapters.len() - 1].iter().enumerate() {
-        *jolt_differences
-            .entry(adapters[index + 1] - adapter_jolts)
-            .or_insert(0) += 1;
-    }
+    let jolt_differences = adapters.windows(2).map(|pair| pair[1] - pair[0]).fold(
+        HashMap::new(),
+        |mut map, jolt_difference| {
+            *map.entry(jolt_difference).or_insert(0) += 1;
+            map
+        },
+    );
     jolt_differences[&1] * jolt_differences[&3]
 }
 
