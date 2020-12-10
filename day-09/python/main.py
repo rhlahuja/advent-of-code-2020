@@ -5,12 +5,12 @@ import itertools
 def find_inconsistent_number(numbers: list[int], preamble_length: int = 25) -> int:
     current_index = preamble_length
     for number in numbers[preamble_length:]:
-        for pair in itertools.combinations(
-            numbers[current_index - preamble_length : current_index], 2
+        if all(
+            number != sum(pair)
+            for pair in itertools.combinations(
+                numbers[current_index - preamble_length : current_index], 2
+            )
         ):
-            if number == sum(pair):
-                break
-        else:
             return number
         current_index += 1
 
