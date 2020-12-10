@@ -50,6 +50,7 @@ fn sum_min_max_operands(numbers: &[usize], target_sum: usize) -> usize {
 }
 
 fn main() {
+    static PREAMBLE_LENGTH: usize = 25;
     let numbers: Vec<_> = fs::read_to_string(
         Path::new(env!("CARGO_MANIFEST_DIR"))
             .parent()
@@ -61,7 +62,7 @@ fn main() {
     .map(|l| l.parse().unwrap())
     .collect();
 
-    let part_one_solution = find_inconsistent_number_naive(&numbers, 25);
+    let part_one_solution = find_inconsistent_number_naive(&numbers, PREAMBLE_LENGTH);
     let part_two_solution = sum_min_max_operands(&numbers, part_one_solution);
 
     println!("Part One: {}", &part_one_solution);
@@ -70,7 +71,7 @@ fn main() {
     assert_eq!(part_one_solution, 15353384);
     assert_eq!(
         part_one_solution,
-        find_inconsistent_number_windows(&numbers, 25)
+        find_inconsistent_number_windows(&numbers, PREAMBLE_LENGTH)
     );
     assert_eq!(part_two_solution, 2466556);
 }
