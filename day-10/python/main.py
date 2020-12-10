@@ -3,10 +3,10 @@ from collections import defaultdict
 
 
 def find_joltage_differences_product(adapter_jolts: list[int]) -> int:
-    jolt_differnces = defaultdict(int)
+    jolt_differences = defaultdict(int)
     for index, jolts in enumerate(adapter_jolts[:-1]):
-        jolt_differnces[adapter_jolts[index + 1] - jolts] += 1
-    return jolt_differnces[1] * jolt_differnces[3]
+        jolt_differences[adapter_jolts[index + 1] - jolts] += 1
+    return jolt_differences[1] * jolt_differences[3]
 
 
 def find_valid_permutations(adapter_jolts: list[int]) -> int:
@@ -31,4 +31,4 @@ print('Part One:', part_one_solution)
 print('Part Two:', part_two_solution)
 
 assert part_one_solution == 2112
-assert part_one_solution == 3022415986688
+assert part_two_solution == 3022415986688
