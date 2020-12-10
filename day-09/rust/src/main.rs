@@ -4,13 +4,13 @@ use std::path::Path;
 
 use itertools::Itertools;
 
-fn find_inconsistent_number(numbers: &[i64], preamble_length: usize) -> i64 {
+fn find_inconsistent_number_naive(numbers: &[i64], preamble_length: usize) -> i64 {
     let mut current_index = preamble_length;
     for number in numbers[preamble_length..].iter() {
         if numbers[current_index - preamble_length..current_index]
             .iter()
-            .combinations(2)
-            .find(|pair| *number == pair.clone().into_iter().sum::<i64>())
+            .tuple_combinations()
+            .find(|(a, b)| *number == *a + *b)
             .is_none()
         {
             return *number;
@@ -20,9 +20,21 @@ fn find_inconsistent_number(numbers: &[i64], preamble_length: usize) -> i64 {
     0
 }
 
+fn find_inconsistent_number_windows(numbers: &[i64], preamble_length: usize) -> i64 {
+    numbers
+        .windows(preamble_length + 1)
+        .find(|window| {
+            window[0..preamble_length]
+                .iter()
+                .tuple_combinations()
+                .all(|(a, b)| a + b != window[preamble_length])
+        })
+        .map(|window| window[preamble_length])
+        .unwrap() as i64
+}
+
 fn sum_min_max_operands(numbers: &[i64], target_sum: i64) -> i64 {
-    let mut min_index = 0;
-    let mut max_index = 0;
+    let (mut min_index, mut max_index) = (0, 0);
 
     while min_index < numbers.len() {
         let operands = &numbers[min_index..max_index];
@@ -49,12 +61,16 @@ fn main() {
     .map(|line| line.parse().unwrap())
     .collect();
 
-    let part_one_solution = find_inconsistent_number(&numbers, 25);
+    let part_one_solution = find_inconsistent_number_naive(&numbers, 25);
     let part_two_solution = sum_min_max_operands(&numbers, part_one_solution);
 
     println!("Part One: {}", &part_one_solution);
     println!("Part Two: {}", &part_two_solution);
 
     assert_eq!(part_one_solution, 15353384);
+    assert_eq!(
+        part_one_solution,
+        find_inconsistent_number_windows(&numbers, 25)
+    );
     assert_eq!(part_two_solution, 2466556);
 }
