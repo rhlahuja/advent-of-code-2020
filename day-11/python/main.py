@@ -81,7 +81,7 @@ def run(
         )
     ):
         seat_layout = new_seat_layout
-    return get_occuppied_seat_total(new_seat_layout)
+    return get_occuppied_seat_total(seat_layout)
 
 
 with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
