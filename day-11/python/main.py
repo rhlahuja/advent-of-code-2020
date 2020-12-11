@@ -1,7 +1,7 @@
 import pathlib
 import itertools
-from typing import Callable
 from copy import deepcopy
+from typing import Callable
 
 
 OCCUPIED_SEAT = '#'
