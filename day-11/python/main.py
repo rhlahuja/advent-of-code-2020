@@ -14,8 +14,12 @@ def get_occuppied_seat_total(seat_layout: list[list[str]]) -> int:
 
 
 def occupied_adjacent_seats(x: int, y: int, seat_layout: list[list[str]]) -> int:
-    adjacent_indices = [(x + i, y + j) for i in range(-1, 2) for j in range(-1, 2)]
-    adjacent_indices.remove((x, y))
+    adjacent_indices = [
+        (x + i, y + j)
+        for i in range(-1, 2)
+        for j in range(-1, 2)
+        if not (i == 0 and j == 0)
+    ]
     return sum(
         seat_layout[y][x] == OCCUPIED_SEAT
         for x, y in adjacent_indices
@@ -26,8 +30,9 @@ def occupied_adjacent_seats(x: int, y: int, seat_layout: list[list[str]]) -> int
 def occupied_visible_seats(x: int, y: int, seat_layout: list[list[str]]) -> int:
     rows = range(len(seat_layout))
     columns = range(len(seat_layout[0]))
-    visibile_direction_deltas = set(itertools.product(range(-1, 2), range(-1, 2)))
-    visibile_direction_deltas.remove((0, 0))
+    visibile_direction_deltas = set(
+        d for d in itertools.product(range(-1, 2), range(-1, 2)) if d != (0, 0)
+    )
 
     occupied_visible_seat_count = 0
     for x_delta, y_delta in visibile_direction_deltas:
