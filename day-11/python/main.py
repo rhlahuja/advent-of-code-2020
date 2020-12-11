@@ -1,4 +1,5 @@
 import pathlib
+import itertools
 from typing import Callable
 from copy import deepcopy
 
@@ -25,16 +26,8 @@ def occupied_adjacent_seats(x: int, y: int, seat_layout: list[list[str]]) -> int
 def occupied_visible_seats(x: int, y: int, seat_layout: list[list[str]]) -> int:
     rows = range(len(seat_layout))
     columns = range(len(seat_layout[0]))
-    visibile_direction_deltas = [
-        (-1, -1),
-        (-1, 0),
-        (-1, 1),
-        (0, -1),
-        (0, 1),
-        (1, -1),
-        (1, 0),
-        (1, 1),
-    ]
+    visibile_direction_deltas = set(itertools.product(range(-1, 2), range(-1, 2)))
+    visibile_direction_deltas.remove((0, 0))
 
     occupied_visible_seat_count = 0
     for x_delta, y_delta in visibile_direction_deltas:
