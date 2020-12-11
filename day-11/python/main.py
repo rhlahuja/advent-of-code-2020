@@ -24,47 +24,31 @@ def occupied_adjacent_seats(x: int, y: int, seat_layout: list[list[str]]) -> int
 
 def occupied_visible_seats(x: int, y: int, seat_layout: list[list[str]]) -> int:
     row_count = len(seat_layout)
-    row_deltas = range(1, row_count)
     rows = range(row_count)
     column_count = len(seat_layout[0])
-    column_deltas = range(1, column_count)
     columns = range(column_count)
-    max_deltas = range(1, max(row_count, column_count))
 
-    visible_indices = [
-        [(right_idx, y) for i in column_deltas if (right_idx := x + i) in columns],
-        [(left_idx, y) for i in column_deltas if (left_idx := x - i) in columns],
-        [(x, up_idx) for i in row_deltas if (up_idx := y + i) in rows],
-        [(x, down_idx) for i in row_deltas if (down_idx := y - i) in rows],
-        [
-            (right_idx, up_idx)
-            for i in max_deltas
-            if (right_idx := x + i) in columns and (up_idx := y + i) in rows
-        ],
-        [
-            (left_idx, up_idx)
-            for i in max_deltas
-            if (left_idx := x - i) in columns and (up_idx := y + i) in rows
-        ],
-        [
-            (left_idx, down_idx)
-            for i in max_deltas
-            if (left_idx := x - i) in columns and (down_idx := y - i) in rows
-        ],
-        [
-            (right_idx, down_idx)
-            for i in max_deltas
-            if (right_idx := x + i) in columns and (down_idx := y - i) in rows
-        ],
+    visibile_direction_deltas = [
+        (-1, -1),
+        (-1, 0),
+        (-1, 1),
+        (0, -1),
+        (0, 1),
+        (1, -1),
+        (1, 0),
+        (1, 1),
     ]
 
     occupied_visible_seat_count = 0
-    for direction in visible_indices:
-        for x, y in direction:
-            seat = seat_layout[y][x]
-            if seat == FLOOR:
+    for x_delta, y_delta in visibile_direction_deltas:
+        visible_x, visible_y = x + x_delta, y + y_delta
+        while visible_x in columns and visible_y in rows:
+            visible_seat = seat_layout[visible_y][visible_x]
+            visible_x += x_delta
+            visible_y += y_delta
+            if visible_seat == FLOOR:
                 continue
-            if seat == OCCUPIED_SEAT:
+            if visible_seat == OCCUPIED_SEAT:
                 occupied_visible_seat_count += 1
             break
 
