@@ -23,11 +23,8 @@ def occupied_adjacent_seats(x: int, y: int, seat_layout: list[list[str]]) -> int
 
 
 def occupied_visible_seats(x: int, y: int, seat_layout: list[list[str]]) -> int:
-    row_count = len(seat_layout)
-    rows = range(row_count)
-    column_count = len(seat_layout[0])
-    columns = range(column_count)
-
+    rows = range(len(seat_layout))
+    columns = range(len(seat_layout[0]))
     visibile_direction_deltas = [
         (-1, -1),
         (-1, 0),
