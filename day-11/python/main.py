@@ -85,7 +85,7 @@ def run(
 
 
 with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
-    seat_layout = [list(line) for line in f.read().splitlines()]
+    seat_layout = [list(line.strip()) for line in f.read().splitlines()]
 
 part_one_solution = run(seat_layout, occupied_adjacent_seats, 4)
 part_two_solution = run(seat_layout, occupied_visible_seats, 5)
