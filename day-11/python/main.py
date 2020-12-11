@@ -44,9 +44,9 @@ def occupied_visible_seats(x: int, y: int, seat_layout: list[list[str]]) -> int:
         visible_x, visible_y = x + x_delta, y + y_delta
         while visible_x in columns and visible_y in rows:
             visible_seat = seat_layout[visible_y][visible_x]
-            visible_x += x_delta
-            visible_y += y_delta
             if visible_seat == FLOOR:
+                visible_x += x_delta
+                visible_y += y_delta
                 continue
             if visible_seat == OCCUPIED_SEAT:
                 occupied_visible_seat_count += 1
