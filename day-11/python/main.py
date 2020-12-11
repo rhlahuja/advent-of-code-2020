@@ -65,7 +65,7 @@ def execute_step(
     return seat_layout
 
 
-def run(
+def execute(
     seat_layout: list[list[str]], occupancy_criteria: Callable, occupancy_threshold: int
 ) -> int:
     while seat_layout != (
@@ -80,8 +80,8 @@ def run(
 with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
     seat_layout = [list(line.strip()) for line in f.read().splitlines()]
 
-part_one_solution = run(seat_layout, occupied_adjacent_seats, 4)
-part_two_solution = run(seat_layout, occupied_visible_seats, 5)
+part_one_solution = execute(seat_layout, occupied_adjacent_seats, 4)
+part_two_solution = execute(seat_layout, occupied_visible_seats, 5)
 
 print('Part One:', part_one_solution)
 print('Part Two:', part_two_solution)
