@@ -116,10 +116,10 @@ fn main() {
     let instructions: Vec<(_, _)> = input
         .lines()
         .map(|l| {
-            let instruction = l.split_at(1);
+            let (action, value) = l.split_at(1);
             (
-                instruction.0.chars().next().unwrap(),
-                instruction.1.parse::<i32>().unwrap(),
+                action.chars().next().unwrap(),
+                value.parse::<i32>().unwrap(),
             )
         })
         .collect();
