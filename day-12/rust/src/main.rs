@@ -98,6 +98,7 @@ fn compute_manhattan_distance(instructions: &[(char, i32)], part: u32) -> u32 {
     }
     ship.manhattan_distance()
 }
+
 fn main() {
     let input = fs::read_to_string(
         Path::new(env!("CARGO_MANIFEST_DIR"))
