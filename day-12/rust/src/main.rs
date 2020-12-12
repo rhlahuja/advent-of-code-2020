@@ -56,7 +56,7 @@ impl Ship {
                 'R' => self.cardinal_directions.rotate_right((value / 90) as usize),
                 'L' => self.cardinal_directions.rotate_left((value / 90) as usize),
                 'F' => self.process_instruction(self.current_direction(), value),
-                _ => (),
+                _ => panic!("unrecognized instruction '{}{}'", action, value),
             },
             2 => match action {
                 'N' => self.waypoint.relative_north_position += value,
@@ -87,9 +87,9 @@ impl Ship {
                     self.east_position += value * self.waypoint.relative_east_position;
                     self.north_position += value * self.waypoint.relative_north_position;
                 }
-                _ => (),
+                _ => panic!("unrecognized instruction '{}{}'", action, value),
             },
-            _ => (),
+            _ => unreachable!(),
         }
     }
 }

@@ -47,7 +47,7 @@ fn flip_instruction(index: usize, instructions: &[String]) -> Vec<String> {
         "nop" => {
             new_instructions[index] = old_instruction.replace("nop", "jmp");
         }
-        _ => (),
+        _ => unreachable!(),
     };
     new_instructions
 }
