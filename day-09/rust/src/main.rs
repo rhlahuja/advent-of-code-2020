@@ -50,7 +50,7 @@ fn sum_min_max_operands(numbers: &[usize], target_sum: usize) -> usize {
 }
 
 fn main() {
-    static PREAMBLE_LENGTH: usize = 25;
+    const PREAMBLE_LENGTH: usize = 25;
     let numbers: Vec<_> = fs::read_to_string(
         Path::new(env!("CARGO_MANIFEST_DIR"))
             .parent()
