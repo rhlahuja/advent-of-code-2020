@@ -18,7 +18,7 @@ impl Default for Waypoint {
 }
 
 struct Ship {
-    current_direction: VecDeque<char>,
+    cardinal_directions: VecDeque<char>,
     east_position: i32,
     north_position: i32,
     waypoint: Waypoint,
@@ -28,7 +28,7 @@ struct Ship {
 impl Default for Ship {
     fn default() -> Self {
         Ship {
-            current_direction: vec!['E', 'N', 'W', 'S'].into_iter().collect(),
+            cardinal_directions: vec!['E', 'N', 'W', 'S'].into_iter().collect(),
             east_position: 0,
             north_position: 0,
             waypoint: Waypoint::default(),
@@ -38,6 +38,10 @@ impl Default for Ship {
 }
 
 impl Ship {
+    fn current_direction(&self) -> char {
+        self.cardinal_directions[0]
+    }
+
     fn manhattan_distance(&self) -> u32 {
         (self.east_position.abs() + self.north_position.abs()) as u32
     }
@@ -49,9 +53,9 @@ impl Ship {
                 'S' => self.north_position -= value,
                 'E' => self.east_position += value,
                 'W' => self.east_position -= value,
-                'R' => self.current_direction.rotate_right((value / 90) as usize),
-                'L' => self.current_direction.rotate_left((value / 90) as usize),
-                'F' => self.process_instruction(self.current_direction[0], value),
+                'R' => self.cardinal_directions.rotate_right((value / 90) as usize),
+                'L' => self.cardinal_directions.rotate_left((value / 90) as usize),
+                'F' => self.process_instruction(self.current_direction(), value),
                 _ => (),
             },
             2 => match action {

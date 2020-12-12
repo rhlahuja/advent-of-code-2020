@@ -38,7 +38,7 @@ class Waypoint:
 class Ship:
     def __init__(self, action_map_part: int):
         self.waypoint = Waypoint()
-        self.current_direction = deque(('E', 'N', 'W', 'S'))
+        self.cardinal_directions = deque(('E', 'N', 'W', 'S'))
         self.east_position = 0
         self.north_position = 0
         self.action_map_part = action_map_part
@@ -63,6 +63,10 @@ class Ship:
             },
         }
 
+    @property
+    def current_direction(self):
+        return self.cardinal_directions[0]
+
     def move_east(self, units: int):
         self.east_position += units
 
@@ -76,13 +80,13 @@ class Ship:
         self.north_position -= units
 
     def turn_left(self, degrees: int):
-        self.current_direction.rotate(-degrees // 90)
+        self.cardinal_directions.rotate(-degrees // 90)
 
     def turn_right(self, degrees: int):
-        self.current_direction.rotate(degrees // 90)
+        self.cardinal_directions.rotate(degrees // 90)
 
     def move_forward(self, units: int):
-        self.action_maps[self.action_map_part][self.current_direction[0]](units)
+        self.action_maps[self.action_map_part][self.current_direction](units)
 
     def move_toward_waypoint(self, units: int):
         self.east_position += units * self.waypoint.relative_east_position
