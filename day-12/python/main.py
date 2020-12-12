@@ -35,15 +35,14 @@ class Waypoint:
             )
 
 
-@dataclass
 class Ship:
-    current_direction: deque = deque(('E', 'N', 'W', 'S'))
-    east_position: int = 0
-    north_position: int = 0
-
-    def __init__(self):
+    def __init__(self, action_map_part: int):
         self.waypoint = Waypoint()
-        self.ACTION_MAPS = {
+        self.current_direction = deque(('E', 'N', 'W', 'S'))
+        self.east_position = 0
+        self.north_position = 0
+        self.action_map_part = action_map_part
+        self.action_maps = {
             1: {
                 'N': self.move_north,
                 'E': self.move_east,
@@ -63,10 +62,6 @@ class Ship:
                 'F': self.move_toward_waypoint,
             },
         }
-        self.action_map = {}
-
-    def set_action_map(self, part: int):
-        self.action_map = self.ACTION_MAPS[part]
 
     def move_east(self, units: int):
         self.east_position += units
@@ -87,14 +82,14 @@ class Ship:
         self.current_direction.rotate(degrees // 90)
 
     def move_forward(self, units: int):
-        self.action_map[self.current_direction[0]](units)
+        self.action_maps[self.action_map_part][self.current_direction[0]](units)
 
     def move_toward_waypoint(self, units: int):
         self.east_position += units * self.waypoint.relative_east_position
         self.north_position += units * self.waypoint.relative_north_position
 
     def process_instruction(self, action: str, value: int):
-        self.action_map[action](value)
+        self.action_maps[self.action_map_part][action](value)
 
     @property
     def manhattan_distance(self) -> int:
@@ -102,8 +97,7 @@ class Ship:
 
 
 def compute_manhattan_distance(instructions: list[tuple[str, int]], part: int) -> int:
-    ship = Ship()
-    ship.set_action_map(part)
+    ship = Ship(part)
     for action, value in instructions:
         ship.process_instruction(action, value)
     return ship.manhattan_distance
