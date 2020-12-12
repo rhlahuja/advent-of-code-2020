@@ -37,7 +37,7 @@ class Waypoint:
 
 @dataclass
 class Ship:
-    current_direction: deque = deque(('E', 'S', 'W', 'N'))
+    current_direction: deque = deque(('E', 'N', 'W', 'S'))
     east_position: int = 0
     north_position: int = 0
 
@@ -81,10 +81,10 @@ class Ship:
         self.north_position -= units
 
     def turn_left(self, degrees: int):
-        self.current_direction.rotate(degrees // 90)
+        self.current_direction.rotate(-degrees // 90)
 
     def turn_right(self, degrees: int):
-        self.current_direction.rotate(-degrees // 90)
+        self.current_direction.rotate(degrees // 90)
 
     def move_forward(self, units: int):
         self.action_map[self.current_direction[0]](units)
@@ -101,7 +101,7 @@ class Ship:
         return abs(self.east_position) + abs(self.north_position)
 
 
-def compute_mahnattan_distance(instructions: list[tuple[str, int]], part: int) -> int:
+def compute_manhattan_distance(instructions: list[tuple[str, int]], part: int) -> int:
     ship = Ship()
     ship.set_action_map(part)
     for action, value in instructions:
@@ -112,8 +112,8 @@ def compute_mahnattan_distance(instructions: list[tuple[str, int]], part: int) -
 with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
     instructions = [(line[0], int(line[1:])) for line in f.read().splitlines()]
 
-part_one_solution = compute_mahnattan_distance(instructions, 1)
-part_two_solution = compute_mahnattan_distance(instructions, 2)
+part_one_solution = compute_manhattan_distance(instructions, 1)
+part_two_solution = compute_manhattan_distance(instructions, 2)
 
 print('Part One:', part_one_solution)
 print('Part Two:', part_two_solution)
