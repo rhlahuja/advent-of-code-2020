@@ -91,8 +91,10 @@ impl Ship {
 }
 
 fn compute_manhattan_distance(instructions: &[(char, i32)], part: u32) -> u32 {
-    let mut ship = Ship::default();
-    ship.action_map_part = part;
+    let mut ship = Ship {
+        action_map_part: part,
+        ..Ship::default()
+    };
     for (action, value) in instructions.iter() {
         ship.process_instruction(*action, *value);
     }
