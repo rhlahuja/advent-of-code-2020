@@ -58,8 +58,8 @@ fn main() {
                 .captures(&bag_rule)
                 .unwrap();
             bag_color_rules.insert(
-                matches[2].parse::<String>().unwrap(),
-                matches[1].parse::<u32>().unwrap(),
+                matches[2].parse().unwrap(),
+                matches[1].parse().unwrap(),
             );
         }
         bag_rules.insert(bag_color.to_string(), bag_color_rules);

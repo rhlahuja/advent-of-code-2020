@@ -113,7 +113,7 @@ fn main() {
             .join("input.txt"),
     )
     .unwrap();
-    let instructions: Vec<(_, _)> = input
+    let instructions: Vec<_> = input
         .lines()
         .map(|l| {
             let (action, value) = l.split_at(1);
