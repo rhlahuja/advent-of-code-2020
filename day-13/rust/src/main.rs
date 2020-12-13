@@ -35,6 +35,7 @@ fn main() {
     .lines()
     .map(|l| l.parse().unwrap())
     .collect();
+
     let earliest_timestamp = input[0].parse().unwrap();
     let bus_indices: Vec<_> = input[1]
         .split(',')
