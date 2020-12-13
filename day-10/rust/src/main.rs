@@ -19,9 +19,9 @@ fn find_num_valid_permutations(adapters: &[i64]) -> i64 {
         num_valid_arrangements.insert(
             *adapter_jolts,
             (1..4)
-                .map(|delta| {
+                .map(|jolt_difference| {
                     num_valid_arrangements
-                        .get(&(adapter_jolts - delta))
+                        .get(&(adapter_jolts - jolt_difference))
                         .unwrap_or(&0)
                 })
                 .sum(),

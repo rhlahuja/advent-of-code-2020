@@ -13,8 +13,8 @@ def find_num_valid_arrangements(adapters: list[int]) -> int:
     num_valid_arrangements = {0: 1}
     for adapter_jolts in adapters[1:]:
         num_valid_arrangements[adapter_jolts] = sum(
-            num_valid_arrangements.get(adapter_jolts - delta, 0)
-            for delta in range(1, 4)
+            num_valid_arrangements.get(adapter_jolts - jolt_difference, 0)
+            for jolt_difference in range(1, 4)
         )
     return num_valid_arrangements[adapters[-1]]
 
