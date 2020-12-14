@@ -1,9 +1,6 @@
 import pathlib
 from dataclasses import dataclass, field
 
-with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
-    instructions = f.read().splitlines()
-
 
 @dataclass
 class Program:
@@ -45,6 +42,9 @@ def fix_program(instructions: list[str]) -> int:
             if program_terminates:
                 return accmumlator
 
+
+with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
+    instructions = f.read().splitlines()
 
 part_one_solution = Program(instructions).run()[1]
 part_two_solution = fix_program(instructions)

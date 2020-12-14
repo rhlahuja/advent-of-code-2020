@@ -2,21 +2,6 @@ import re
 import pathlib
 
 
-with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
-    bag_rules_data = [line.split(' bags contain ') for line in f.read().splitlines()]
-
-bag_rules = {}
-for bag_color, rules in bag_rules_data:
-    bag_color_rules = {}
-    for rule in rules.split(', '):
-        rule = rule.rstrip('.')
-        if rule == 'no other bags':
-            break
-        match = re.match(r'(\d+) (.*) bags?', rule)
-        bag_color_rules[match.group(2)] = int(match.group(1))
-    bag_rules[bag_color] = bag_color_rules
-
-
 def contains_bag(
     enclosing_bag_color: str, contained_bag_color: str, bag_rules: dict[str, dict]
 ) -> bool:
@@ -32,6 +17,21 @@ def get_bag_count(bag_color: str, bag_rules: dict[str, dict]) -> int:
         bag_count + bag_count * get_bag_count(color, bag_rules)
         for color, bag_count in bag_rules[bag_color].items()
     )
+
+
+with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
+    bag_rules_data = [line.split(' bags contain ') for line in f.read().splitlines()]
+
+bag_rules = {}
+for bag_color, rules in bag_rules_data:
+    bag_color_rules = {}
+    for rule in rules.split(', '):
+        rule = rule.rstrip('.')
+        if rule == 'no other bags':
+            break
+        match = re.match(r'(\d+) (.*) bags?', rule)
+        bag_color_rules[match.group(2)] = int(match.group(1))
+    bag_rules[bag_color] = bag_color_rules
 
 
 part_one_solution = sum(
