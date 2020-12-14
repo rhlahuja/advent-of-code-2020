@@ -25,11 +25,12 @@ def find_earliest_valid_timestamp(bus_id_indices: list[tuple[int, int]]) -> int:
 
 with open(pathlib.Path(__file__).parent.parent / 'input.txt') as f:
     lines = f.read().splitlines()
-    bus_id_indices = [
-        (index, int(bus_id))
-        for index, bus_id in enumerate(lines[1].split(','))
-        if bus_id != 'x'
-    ]
+
+bus_id_indices = [
+    (index, int(bus_id))
+    for index, bus_id in enumerate(lines[1].split(','))
+    if bus_id != 'x'
+]
 
 part_one_solution = find_earliest_bus(int(lines[0]), bus_id_indices)
 part_two_solution = find_earliest_valid_timestamp(bus_id_indices)
