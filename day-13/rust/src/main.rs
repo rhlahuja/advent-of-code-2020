@@ -1,7 +1,7 @@
 use std::fs;
 use std::path::Path;
 
-fn find_earliest_bus(earliest_timestamp: usize, bus_id_indices: &[(usize, usize)]) -> usize {
+fn find_earliest_valid_bus(earliest_timestamp: usize, bus_id_indices: &[(usize, usize)]) -> usize {
     for timestamp in earliest_timestamp.. {
         for (_, bus_id) in bus_id_indices {
             if timestamp % bus_id == 0 {
@@ -43,7 +43,7 @@ fn main() {
         .map(|(index, bus_id)| (index, bus_id.parse().unwrap()))
         .collect();
 
-    let part_one_solution = find_earliest_bus(input[0].parse().unwrap(), &bus_indices);
+    let part_one_solution = find_earliest_valid_bus(input[0].parse().unwrap(), &bus_indices);
     let part_two_solution = find_earliest_valid_timestamp(&bus_indices);
 
     println!("Part One: {}", part_one_solution);

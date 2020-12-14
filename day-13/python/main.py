@@ -2,7 +2,7 @@ import pathlib
 import itertools
 
 
-def find_earliest_bus(
+def find_earliest_valid_bus(
     earliest_timestamp: int, bus_id_indices: list[tuple[int, int]]
 ) -> int:
     for timestamp in itertools.count(start=earliest_timestamp):
@@ -32,7 +32,7 @@ bus_id_indices = [
     if bus_id != 'x'
 ]
 
-part_one_solution = find_earliest_bus(int(lines[0]), bus_id_indices)
+part_one_solution = find_earliest_valid_bus(int(lines[0]), bus_id_indices)
 part_two_solution = find_earliest_valid_timestamp(bus_id_indices)
 
 print('Part One:', part_one_solution)
